@@ -1,0 +1,18 @@
+{
+  "name": "agency-os",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "brand-profile": "tsx scripts/brand-profile.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@mendable/firecrawl-js": "^1.9.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

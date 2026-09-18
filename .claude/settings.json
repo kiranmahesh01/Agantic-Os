@@ -1,0 +1,10 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://localhost:20128",
+    "ANTHROPIC_MODEL": "openrouter/cohere/north-mini-code:free",
+    "ANTHROPIC_SMALL_FAST_MODEL": "openrouter/cohere/north-mini-code:free",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "openrouter/cohere/north-mini-code:free",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "openrouter/cohere/north-mini-code:free",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "openrouter/cohere/north-mini-code:free"
+  }
+}
