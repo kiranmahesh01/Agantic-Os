@@ -3,3 +3,6 @@ out/
 .env
 *.bak
 posts/
+.env.local
+.next/
+apps/web/node_modules/
