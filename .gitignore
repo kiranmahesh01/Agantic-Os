@@ -1,9 +1,9 @@
-node_modules/
-out/
-.env
 *.bak
-posts/
+.env
 .env.local
 .next/
-apps/web/node_modules/
 apps/web/.next/
+apps/web/node_modules/
+node_modules/
+out/
+posts/

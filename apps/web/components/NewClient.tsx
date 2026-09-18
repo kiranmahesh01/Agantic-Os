@@ -10,7 +10,7 @@ export default function NewClient() {
 
   async function add(e: React.FormEvent) {
     e.preventDefault();
-    if (!brandName) return;
+    if (!brandName.trim()) return;
     setBusy(true);
     await fetch('/api/workspaces', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -21,13 +21,13 @@ export default function NewClient() {
   }
 
   return (
-    <form onSubmit={add} className="rounded-xl border border-[var(--line)] bg-[var(--card)] p-5 flex flex-col sm:flex-row gap-3">
-      <input value={brandName} onChange={e => setBrandName(e.target.value)} placeholder="Client name (e.g. NTR Biryani)"
-        className="flex-1 rounded-lg bg-black/30 border border-[var(--line)] px-4 py-2.5 outline-none focus:border-[var(--accent)]" />
-      <input value={websiteUrl} onChange={e => setWebsiteUrl(e.target.value)} placeholder="Website (optional)"
-        className="flex-1 rounded-lg bg-black/30 border border-[var(--line)] px-4 py-2.5 outline-none focus:border-[var(--accent)]" />
-      <button disabled={busy} className="rounded-lg bg-[var(--accent)] text-black font-medium px-5 py-2.5 disabled:opacity-50">
-        {busy ? 'Adding…' : 'Add client'}
+    <form onSubmit={add} className="surface p-4 flex flex-col sm:flex-row gap-3">
+      <input className="field flex-1" value={brandName} onChange={e => setBrandName(e.target.value)}
+        placeholder="Restaurant name" />
+      <input className="field flex-1" value={websiteUrl} onChange={e => setWebsiteUrl(e.target.value)}
+        placeholder="Website, if they have one" />
+      <button disabled={busy || !brandName.trim()} className="btn btn-primary whitespace-nowrap">
+        {busy ? 'Adding' : 'Add client'}
       </button>
     </form>
   );

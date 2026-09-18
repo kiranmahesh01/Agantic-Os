@@ -9,9 +9,8 @@ export default async function WorkspacePage({ params }: { params: Promise<{ work
   const u = await currentUser();
   if (!u) redirect('/login');
 
-  let ws;
-  try { ws = await assertWorkspace(u.id, workspaceId); }
-  catch { redirect('/dashboard'); }
+  const ws = await assertWorkspace(u.id, workspaceId);
+  if (!ws) redirect('/dashboard');
 
   const [profile] = await db.select().from(brandProfiles)
     .where(eq(brandProfiles.workspaceId, ws.id))

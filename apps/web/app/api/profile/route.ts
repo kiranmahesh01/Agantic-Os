@@ -15,6 +15,8 @@ export async function POST(req: Request) {
 
   try {
     const ws = await assertWorkspace(u.id, workspaceId);
+  if (!ws) return NextResponse.json({ error: 'Workspace not found' }, { status: 403 });
+    if (!ws) return NextResponse.json({ error: 'Workspace not found' }, { status: 403 });
     const { org } = await currentOrg(u.id);
     if (org.credits <= 0) {
       return NextResponse.json({ error: 'Out of credits' }, { status: 402 });

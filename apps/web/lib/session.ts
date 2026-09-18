@@ -25,13 +25,14 @@ export async function currentOrg(userId: string) {
   return { org, role: 'owner' as const };
 }
 
-/** Tenant isolation: never trust a workspaceId from the client without this. */
+/** Tenant isolation: never trust a workspaceId from the client without this.
+ *  Returns null when the user has no claim to it — callers reply 403. */
 export async function assertWorkspace(userId: string, workspaceId: string) {
+  if (!workspaceId) return null;
   const rows = await db.select({ ws: workspaces })
     .from(workspaces)
     .innerJoin(members, eq(members.orgId, workspaces.orgId))
     .where(and(eq(workspaces.id, workspaceId), eq(members.userId, userId)))
     .limit(1);
-  if (!rows.length) throw new Error('Workspace not found');
-  return rows[0].ws;
+  return rows.length ? rows[0].ws : null;
 }

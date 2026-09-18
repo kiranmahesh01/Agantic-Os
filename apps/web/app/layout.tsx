@@ -1,27 +1,28 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import Rail from '@/components/Rail';
 
 export const metadata: Metadata = {
   title: 'Agency OS',
-  description: 'Website in, social posts out.'
+  description: 'Social posts for restaurants, written from what the kitchen actually serves.'
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>
-        <header className="border-b border-[var(--line)]">
-          <div className="mx-auto max-w-5xl px-4 py-4 flex items-center gap-3">
-            <div className="h-7 w-7 rounded-md bg-[var(--accent)]" />
-            <span className="font-semibold tracking-tight">Agency OS</span>
-            <nav className="ml-auto flex items-center gap-5 text-sm text-[var(--muted)]">
-              <a href="/dashboard" className="hover:text-[var(--fg)]">Clients</a>
-              <a href="/billing" className="hover:text-[var(--fg)]">Billing</a>
-              <a href="/admin" className="hover:text-[var(--fg)]">Admin</a>
-            </nav>
-          </div>
-        </header>
-        <main className="mx-auto max-w-5xl px-4 py-10">{children}</main>
+        <div className="flex min-h-screen">
+          <Rail />
+          <main className="flex-1 min-w-0 px-6 sm:px-10 py-9 max-w-[1100px]">{children}</main>
+        </div>
       </body>
     </html>
   );

@@ -8,22 +8,20 @@ export default function Upgrade({ plan, disabled }: { plan: string; disabled: bo
   async function go() {
     setBusy(true); setMsg(null);
     const r = await fetch('/api/billing/checkout', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ plan })
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ plan })
     });
     const d = await r.json();
     setBusy(false);
     if (d.url) { window.location.href = d.url; return; }
-    setMsg(d.error || 'Could not start checkout');
+    setMsg(d.error || 'Checkout could not start.');
   }
 
   return (
-    <div className="mt-4">
-      <button onClick={go} disabled={disabled || busy}
-        className="w-full rounded-lg bg-[var(--accent)] text-black font-medium py-2 text-sm disabled:opacity-40">
-        {busy ? 'Redirecting…' : 'Upgrade'}
+    <>
+      <button onClick={go} disabled={disabled || busy} className="btn btn-primary w-full text-[13px] py-2">
+        {busy ? 'Opening Stripe' : 'Choose'}
       </button>
-      {msg && <p className="text-xs text-amber-400 mt-2">{msg}</p>}
-    </div>
+      {msg && <p className="mt-2 text-[12px] leading-relaxed text-[var(--chalk-dim)]">{msg}</p>}
+    </>
   );
 }
