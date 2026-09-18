@@ -42,7 +42,11 @@ BRAND PROFILE:
 ${JSON.stringify(profile, null, 2)}
 
 RULES:
-- Use ONLY facts present in the profile. Never invent a dish, price, date, award or claim.
+- CRITICAL: use ONLY facts written in the profile above. Do not add any dish,
+  ingredient, menu item, price, date, award, staff detail or claim that does not
+  appear in the profile text. If the profile does not name a specific food, write
+  about the experience instead of naming food. Inventing a detail is a failure,
+  even if it sounds plausible for this kind of restaurant.
 - Each post uses a different content pillar from the profile.
 - Match the tone described in the profile.
 - Hook: first line, under 12 words, makes someone stop scrolling.
@@ -51,7 +55,7 @@ RULES:
 - 5-8 hashtags, mixing local and category tags.
 - visualNote: one plain sentence telling the owner what photo or video to take.
 
-Return ONLY valid JSON, no code fences, no extra text:
+Before writing each caption, check every concrete noun against the profile. Return ONLY valid JSON, no code fences, no extra text:
 {"posts":[{"pillar":"...","hook":"...","caption":"...","hashtags":["..."],"visualNote":"..."}]}`
     }]
   });
@@ -83,7 +87,7 @@ Return ONLY valid JSON, no code fences, no extra text:
     '',
     p.caption,
     '',
-    p.hashtags.map(h => (h.startsWith('#') ? h : '#' + h)).join(' '),
+    p.hashtags.map(h => '#' + h.replace(/[#\s]/g, '')).filter(h => h.length > 1).join(' '),
     '',
     `> Photo to take: ${p.visualNote}`,
     '',
