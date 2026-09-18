@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: agency-os-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: agency
+      POSTGRES_PASSWORD: agency_local_dev
+      POSTGRES_DB: agency_os
+    ports:
+      - "5433:5432"
+    volumes:
+      - agency_pgdata:/var/lib/postgresql/data
+volumes:
+  agency_pgdata:

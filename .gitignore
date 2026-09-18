@@ -6,3 +6,4 @@ posts/
 .env.local
 .next/
 apps/web/node_modules/
+apps/web/.next/
